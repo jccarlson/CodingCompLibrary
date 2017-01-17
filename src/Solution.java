@@ -7,28 +7,55 @@ import java.io.*;
 public class Solution {
 	
 	public static void main(String [] args) {
+		
+		//long time = System.currentTimeMillis();
+		
 		FastInput in = new FastInput(System.in);
 		FastOutput out = new FastOutput(System.out);
 		
 		// SOLUTION GOES HERE
 		
 		
-		out.flush();		
+		out.flush();
+		
+		//System.err.println("Time: " + (System.currentTimeMillis() - time)/1000.0);
 	}
 	
 	
 	// fast IO
 	
 	public static class FastInput {
-		InputStream is;
-		int bufflen;
-		int buffi;
-		byte [] buffer = new byte[1024];
+		private InputStream is;
+		private int bufflen;
+		private int buffi;
+		private byte [] buffer = new byte[1024];
+		private boolean EOF = false;
+		private WhiteSpaceFilter wsfilter  = null; 
 		
 		public FastInput(InputStream i) {
 			is = i;
 			bufflen = 0;
 			buffi = 0;
+		}
+		
+		public FastInput(InputStream i, WhiteSpaceFilter wsfilter) {
+			this(i);
+			this.wsfilter = wsfilter;
+		}
+		
+		public FastInput(String inputString) {
+			is = new ByteArrayInputStream(inputString.getBytes());
+			bufflen = 0;
+			buffi = 0;
+		}
+		
+		public FastInput(String inputString, WhiteSpaceFilter wsfilter) {
+			this(inputString);
+			this.wsfilter = wsfilter; 
+		}	
+		
+		public boolean atEOF() {
+			return EOF;
 		}
 		
 		public byte nextByte() {
@@ -44,6 +71,7 @@ public class Solution {
 					throw new InputMismatchException();
 				}
 				if(bufflen <= 0){ 
+					EOF = true;
 					return -1;
 				}
 			}
@@ -101,7 +129,7 @@ public class Solution {
 			return result * sign;
 		}
 		
-		public String readString() {
+		public String next() {
             byte c = nextByte();
             while (isWhiteSpace(c))
                 c = nextByte();
@@ -114,7 +142,7 @@ public class Solution {
             return res.toString();
         }
 	     
-		 public double readDouble() {
+		 public double nextDouble() {
             byte c = nextByte();
             while (isWhiteSpace(c))
                 c = nextByte();
@@ -150,7 +178,15 @@ public class Solution {
         }
 
 		private boolean isWhiteSpace(byte c) {
+			
+			if(wsfilter != null)
+				return wsfilter.isWhiteSpace(c);
+			
 			return c == ' '||c=='\t'||c=='\n'||c=='\r' || c == -1;
+		}
+		
+		public static interface WhiteSpaceFilter {
+			public boolean isWhiteSpace(byte c);
 		}
 		
 	}

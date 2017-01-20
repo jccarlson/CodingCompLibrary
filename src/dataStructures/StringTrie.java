@@ -1,9 +1,6 @@
 package dataStructures;
 
 import java.util.Collection;
-import java.util.Deque;
-import java.util.Iterator;
-import java.util.LinkedList;
 
 public class StringTrie /*implements Iterable<String>*/{
 	

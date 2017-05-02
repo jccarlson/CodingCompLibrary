@@ -6,17 +6,25 @@ import java.io.*;
 
 public class Solution {
 	
+	//IO objects
+	
+	FastInput in = new FastInput(System.in);
+	FastOutput out = new FastOutput(System.out);
+	
+	
+	
+	public void run() {
+		
+		// SOLUTION GOES HERE
+				
+		out.flush();
+	}
+	
 	public static void main(String [] args) {
 		
 		//long time = System.currentTimeMillis();
 		
-		FastInput in = new FastInput(System.in);
-		FastOutput out = new FastOutput(System.out);
-		
-		// SOLUTION GOES HERE
-		
-		
-		out.flush();
+		(new Solution()).run();		
 		
 		//System.err.println("Time: " + (System.currentTimeMillis() - time)/1000.0);
 	}

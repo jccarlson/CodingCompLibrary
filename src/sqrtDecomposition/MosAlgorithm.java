@@ -1,4 +1,4 @@
-package SqrtDecomposition;
+package sqrtDecomposition;
 
 public class MosAlgorithm {
 	

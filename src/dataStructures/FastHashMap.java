@@ -36,7 +36,7 @@ public class FastHashMap {
 			}
 			n = n.next;				
 		}
-		return 0.0;			
+		return Double.NaN;			
 	}
 	
 	public void put(int key, double val) {
